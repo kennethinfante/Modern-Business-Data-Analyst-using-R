@@ -14,7 +14,9 @@ library("tidyverse")
 library("readxl")
 
 # set working dir
-setwd("D:/ProgrammingR/Modern Business Data Analyst using R")
+# setwd("D:/ProgrammingR/Modern Business Data Analyst using R")
+
+# setwd("~/Desktop/ProgrammingDashboards/Modern-Business-Data-Analyst-using-R")
 
 dataset = read_excel("data/productionlog_sample.xlsx")
 

@@ -58,10 +58,10 @@ unclass(my_factor)
 table(my_factor)
 
 my_matrix = matrix(
-  + c(1, 2, 1, 1, 2, 2), # the elements
-  + nrow=3, # number of rows
-  + ncol=2, # number of columns
-  + byrow= TRUE) # fill matrix by rows
+  c(1, 2, 1, 1, 2, 2), # the elements
+  nrow = 3, # number of rows
+  ncol = 2, # number of columns
+  byrow = TRUE) # fill matrix by rows
 
 my_matrix
 
@@ -79,11 +79,13 @@ my_data_frame
 
 head(dataset)
 
+getwd()
+
 # work with data ----------------------------------------------------------
-dataset = read_excel("productionlog_sample.xlsx")
+dataset = read_excel("data/productionlog_sample.xlsx")
 
 # or if dstools is installed and loaded just run
-data("productionlog_sample")
+# data("productionlog_sample")
 
 View(productionlog_sample)
 
@@ -114,7 +116,7 @@ my_vector
 my_vector["Zoe"]
 my_vector[c("Zoe")]
 
-beauty_contest = list(dogs=funnyDogNames, rating=coinFlips)
+beauty_contest = list(dogs=funny_dog_names, rating=coin_flips)
 beauty_contest$dogs
 
 beauty_contest[[1]]

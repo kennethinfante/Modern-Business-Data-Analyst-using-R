@@ -12,11 +12,11 @@ install.packages("officer", dependencies = TRUE)
 library(officer)
 
 # read in our pptx template 
-template_pptx = read_pptx("Projectslides Officer Example.pptx")
+template_pptx = read_pptx("templates/Projectslides Officer Example.pptx")
 layout_summary(template_pptx)
 
 # add a new slide with a title
-template_pptx = read_pptx("Projectslides Officer Example.pptx")
+# template_pptx = read_pptx("Projectslides Officer Example.pptx")
 
 template_pptx = add_slide(template_pptx, layout = "r_content_1", master = "business_data_analytics") 
 
@@ -29,7 +29,7 @@ print(template_pptx, target = "reporting.pptx")
 
 
 # add full reporting
-template_pptx = read_pptx("Projectslides Officer Example.pptx")
+template_pptx = read_pptx("templates/Projectslides Officer Example.pptx")
 
 onlineshop = read_excel("onlineshop.xlsx")
 
@@ -80,7 +80,7 @@ install.packages("flexdashboard", dependencies = TRUE)
 
 
 # recommender system ------------------------------------------------------
-# install.packages("recommenderlab", dependencies = TRUE)
+install.packages("recommenderlab", dependencies = TRUE)
 library(recommenderlab)
 
 data(MovieLense)
@@ -133,13 +133,13 @@ head(eval_accuracy)
 
 
 # API ---------------------------------------------------------------------
-# install.packages("plumber", dependencies = TRUE)
+install.packages("plumber", dependencies = TRUE)
 library(plumber)
 
 # the code for the API is in a seperate file "5 plumber.R"
 # you can test it with the following commands
 
-root = pr("5 plumber.R")
+root = pr("code/6 plumber.R")
 root
 root %>% pr_run()
 

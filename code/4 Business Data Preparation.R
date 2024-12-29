@@ -9,29 +9,33 @@ library("ggplot2")
 library("readxl")
 
 # introduction ------------------------------------------------------------
+# iris is built-in dataset, + has special meaning in ggplot
+
+data("iris")
+
 ggplot(data=iris) +
   aes(x=Petal.Length, y=Petal.Width) +
   geom_point(aes(color=Species, shape=Species), size=3)
 
 # flat files --------------------------------------------------------------
-data("whisky_collection")
+# data("whisky_collection")
 
 #read csv
-whisky_collection_csv = read.csv("whisky_collection.csv")
+whisky_collection_csv = read.csv("data/whisky_collection.csv")
 
 #read delimeter separated values
 library(readr)
-whisky_collection_dsv = read_delim("whisky_collection.dsv", delim=";")
+whisky_collection_dsv = read_delim("data/whisky_collection.dsv", delim=";")
 
 # read RData
-load(file="whiskycollection.RData")
+load(file="data/whisky_collection.RData")
 
 # save as RData
-save(whisky_collection, file="whisky_collection.RData")
+# save(whisky_collection, file="whisky_collection.RData")
 
 # webdata -----------------------------------------------------------------
-install.packages("readr", dependencies = TRUE)
-library(readr)
+# install.packages("readr", dependencies = TRUE)
+# library(readr)
 
 # Read from the web
 urlfile="https://raw.githubusercontent.com/dominikjung42/BusinessAnalyticsBook/main/data/whisky_collection.csv"
@@ -44,6 +48,7 @@ dataset <- read_csv("downloaded_whisky_collection.csv")
 install.packages("rvest", dependencies = TRUE)
 library(rvest)
 
+# rvest has the code to read html sites
 # Specify the url for desired website to be scraped
 url = "https://en.wikipedia.org/wiki/List_of_whisky_distilleries_in_Scotland"
 website = read_html(url)
@@ -57,7 +62,8 @@ tables[4]
 library(httr)
 library(jsonlite)
 
-api_key = "enter your api key here"
+# misnomer, this is actually the whole url
+api_key = "http://www.omdbapi.com/?i=tt3896198&apikey=c760e6c"
 
 movies_raw = GET(url = api_key)
 
@@ -77,18 +83,19 @@ movies_json
 movies_dataframe = as.data.frame(movies_json)
 movies_dataframe
 
+# when installing packages, enclose in quotes
 # databases ---------------------------------------------------------------
 library(dplyr)
 library(dbplyr)
 library(DBI)
 library(RSQLite)
 
-# download
-urlfile="https://raw.githubusercontent.com/dominikjung42/BusinessAnalyticsBook/main/data/whiskycollection.csv"
+# download - note that the original code is wrong
+urlfile="https://raw.githubusercontent.com/dominikjung42/BusinessAnalyticsBook/main/data/whisky_collection.db"
 download.file(urlfile, destfile="./downloaded_whisky_collection.db")
 
-# connect to db
-con = dbConnect(SQLite(), "downloaded_whisky_collection.db")
+# connect to db - note that there's no file extension
+con = dbConnect(SQLite(), "downloaded_whisky_collection.db", synchronous = NULL)
 
 as.data.frame(dbListTables(con))
 

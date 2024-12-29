@@ -9,13 +9,19 @@ library("ggplot2")
 library("readxl")
 
 # loading business data ---------------------------------------------------
-whisky_collection = read_excel("whiskycollection.xlsx")
+whisky_collection = read_excel("data/whisky_collection.xlsx")
 
 # or if dstools is installed and loaded just run
-data("whisky_collection")
+# data("whisky_collection")
 
 View(whisky_collection)
 head(whisky_collection)
+
+# select
+select(whisky_collection, NAME, RATING)
+
+# select except wiki and rating
+select(whisky_collection, -WIKIPEDIA, -RATING)
 
 # business data manipulation ----------------------------------------------
 filter(whisky_collection, LOCATION == "Scotland")
@@ -47,6 +53,7 @@ whisky_collection_new = whisky_collection %>%
   mutate(FAVORITE = ifelse(LOCATION == "Scotland", TRUE,
                            ifelse(RATING >= 4, TRUE, FALSE)))
 
+# this will not work as expected
 whisky_collection_new = whisky_collection %>%
   group_by(LOCATION) %>% 
   mutate(BENCHMARK = mean(RATING))
@@ -55,6 +62,7 @@ whisky_collection_new = whisky_collection %>%
   group_by(LOCATION) %>% 
   summarize(BENCHMARK = mean(RATING))
 
+# this will include the count per group
 whisky_collection_new = whisky_collection %>%
   group_by(LOCATION) %>%
   summarize(BENCHMARK = mean(RATING), NUM = n())

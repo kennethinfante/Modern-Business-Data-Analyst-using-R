@@ -8,17 +8,15 @@ library("readxl")
 library("dstools")
 
 # load data ---------------------------------------------------------------
-whisky_collection = read_excel("whiskycollection.xlsx")
+whisky_collection = read_excel("data/whisky_collection.xlsx")
 
 # or if dstools is installed and loaded just run
-data("whisky_collection")
+# data("whisky_collection")
 
 # investigate data --------------------------------------------------------
 
 
-
-
-<- ggplot(mtcars2) +
+ggplot(mtcars2) +
   geom_point(aes(x = wt, y = mpg, colour = gear)) +
   labs(
     title = "Fuel economy declines as weight increases",
